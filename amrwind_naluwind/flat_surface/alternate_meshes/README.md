@@ -1,0 +1,1 @@
+For each of the mesh files, the volume is named "block" and the block surfaces are collectively named "outer_surf". Append "-HEX" or "-TET" to the volume name depending on which mesh is being used.

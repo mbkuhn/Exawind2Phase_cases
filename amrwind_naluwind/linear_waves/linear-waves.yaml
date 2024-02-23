@@ -1,0 +1,20 @@
+
+exawind:
+  nalu_wind_inp:
+    - linear-waves-nalu.yaml
+  amr_wind_inp: linear-waves-amr.inp
+# The first wave hits the overset region around 2.5 seconds
+  num_timesteps: 5000
+  additional_picard_iterations: 2
+
+  nalu_vars:
+    - volume_of_fluid
+    - velocity
+    - density
+    - pressure
+  amr_cell_vars:
+    - vof
+    - velocity
+    - density
+  amr_node_vars:
+    - p
