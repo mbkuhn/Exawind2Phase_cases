@@ -46,8 +46,6 @@ ICNS.source_terms = GravityForcing
 
 
 ICNS.use_perturb_pressure = false
-VOF.sharpen_acq_field = false
-VOF.sharpen_dest_field = false
 VOF.replace_masked = true
 incflo.disable_overset_mac = true
 incflo.disable_overset_nodal = true
