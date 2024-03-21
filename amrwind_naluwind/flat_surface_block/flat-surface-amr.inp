@@ -1,0 +1,79 @@
+time.stop_time               =   2     # Max (simulated) time to evolve
+time.max_step                =   -10    # Max number of time steps
+
+time.initial_dt       =   -0.05        # Use this constant dt if > 0
+time.fixed_dt         =   0.0005
+time.cfl              =   0.5         # CFL factor
+time.plot_interval            =  1       # Steps between plot files
+incflo.do_initial_proj = 0
+incflo.initial_iterations = 0
+incflo.sharpen_iterations = 10
+incflo.sharpen_tolerance = 1e-12
+incflo.sharpen_calctol_niter = 1
+incflo.sharpen_rlscale = 1.5
+incflo.sharpen_margin = 0.1
+
+incflo.sharpen_guess_hsp = false
+incflo.sharpen_replace_hsp = false
+incflo.sharpen_replace_gp = false
+incflo.sharpen_pressure = true
+Overset.ignore_nalu_pressure_field = false
+
+io.outputs = density vof velocity p gp levelset reference_pressure
+io.int_outputs = iblank_cell iblank_node
+
+incflo.use_godunov = 1
+incflo.godunov_type="weno_z"
+incflo.diffusion_type = 2
+transport.model = TwoPhaseTransport
+transport.laminar_prandtl = 0.7
+transport.turbulent_prandtl = 0.3333
+turbulence.model = Laminar
+
+SloshingTank.amplitude=0
+SloshingTank.water_level=-0.1015625
+MultiPhase.water_level=-0.1015625
+transport.viscosity_fluid1=1e-5
+transport.viscosity_fluid2=1e-5
+
+# Rely on default values of SloshingTank for
+# amplitude, peak_enhance, and water_level
+incflo.physics = MultiPhase SloshingTank
+MultiPhase.density_fluid1=1000.
+MultiPhase.density_fluid2=1.
+MultiPhase.interface_smoothing=0.
+ICNS.source_terms = GravityForcing
+
+ICNS.use_perturb_pressure = false
+ICNS.reconstruct_true_pressure = false
+VOF.sharpen_acq_field = false
+VOF.sharpen_dest_field = false
+VOF.replace_masked = true
+incflo.disable_overset_mac = true
+incflo.disable_overset_nodal = true
+
+# Target resolution at interface is dx = dy = 0.3125, dz = 0.125
+amr.n_cell              = 64 64 64   # Grid cells at coarsest AMRlevel
+#tagging.labels = sr
+#tagging.sr.type = CartBoxRefinement
+#tagging.sr.static_refinement_def = static_box.refine
+amr.max_level = 0
+#amr.max_grid_size = 128
+#amr.blocking_factor = 64
+
+geometry.prob_lo        =   -0.5  -0.5  -0.5   # Lo corner coordinates
+geometry.prob_hi        =    0.5   0.5   0.5   # Hi corner coordinates
+geometry.is_periodic    =    0   0    0   # Periodicity x y z (0/1)
+
+xlo.type =   "slip_wall"
+xhi.type =   "slip_wall"
+ylo.type =   "slip_wall"
+yhi.type =   "slip_wall"
+zlo.type =   "slip_wall"
+zhi.type =   "slip_wall"
+
+incflo.verbose          =   0          # incflo_level
+#mac_proj.max_coarsening_level = 0
+#mac_proj.bottom_solver = hypre
+#nodal_proj.max_coarsening_level = 0
+#nodal_proj.bottom_solver = hypre
