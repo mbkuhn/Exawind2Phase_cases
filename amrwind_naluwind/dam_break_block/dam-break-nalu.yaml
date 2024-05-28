@@ -28,7 +28,7 @@ linear_solvers:
 realms:
 
   - name: realm_1
-    mesh: ../../meshes_etc/block.exo
+    mesh: ../../meshes_etc/block_coarse.exo
     use_edges: yes
     automatic_decomposition_type: rcb
     check_for_missing_bcs: yes
@@ -60,7 +60,7 @@ realms:
         user_function_name:
           pressure: sloshing_tank
         user_function_parameters:
-          pressure: [-100, 0.0, 0.25, 0.00, 1.1875]
+          pressure: [-100, 0.0, 0.25, 0.05, 1.1875]
 
       - constant: ic_1
         target_name: fluid-HEX
