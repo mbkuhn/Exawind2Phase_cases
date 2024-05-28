@@ -28,7 +28,7 @@ linear_solvers:
 realms:
 
   - name: realm_1
-    mesh: block.exo
+    mesh: ../../meshes_etc/block.exo
     use_edges: yes
     automatic_decomposition_type: rcb
     check_for_missing_bcs: yes

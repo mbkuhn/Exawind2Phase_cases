@@ -23,12 +23,12 @@ linear_solvers:
     kspace: 75
     output_level: 0
     recompute_preconditioner: yes
-    muelu_xml_file_name: milestone.xml
+    muelu_xml_file_name: ../../meshes_etc/milestone.xml
 
 realms:
 
   - name: realm_1
-    mesh: cylinder_waves.exo
+    mesh: ../../meshes_etc/cylinder_waves.exo
     use_edges: yes
     automatic_decomposition_type: rcb
     check_for_missing_bcs: yes
