@@ -101,8 +101,8 @@ realms:
 
     solution_options:
       name: myOptions
-      use_balanced_buoyancy_force: yes
-      interface_width: 0.1
+      use_balanced_buoyancy_force: no
+      #interface_width: 0.1
 
       options:
         - hybrid_factor:
@@ -137,7 +137,7 @@ realms:
 
     output:
       output_data_base_name: out/stokesWavesCylinder.e
-      output_frequency: 1
+      output_frequency: 20
       output_node_set: yes
       output_variables:
        - density
@@ -152,7 +152,7 @@ Time_Integrators:
       name: ti_1
       start_time: 0.0
       termination_time: 200.0
-      time_step: 0.004
+      time_step: 0.01
       time_stepping_type: fixed
       time_step_count: 0
       second_order_accuracy: yes

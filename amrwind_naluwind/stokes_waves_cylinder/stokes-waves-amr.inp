@@ -2,9 +2,9 @@ time.stop_time               =   200     # Max (simulated) time to evolve
 time.max_step                =   -10    # Max number of time steps
 
 time.initial_dt       =   -0.05        # Use this constant dt if > 0
-time.fixed_dt         =   0.004
+time.fixed_dt         =   0.01
 time.cfl              =   0.5         # CFL factor
-time.plot_interval            =  1       # Steps between plot files
+time.plot_interval            =  20       # Steps between plot files
 incflo.do_initial_proj = 0
 incflo.initial_iterations = 0
 incflo.sharpen_iterations = 10
