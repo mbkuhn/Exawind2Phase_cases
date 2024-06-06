@@ -1,0 +1,1 @@
+This case serves to show a typical setup for a Nalu-Nalu multiphase overset case where one mesh has a solid body. In this case, a droplet is released onto a cube which is partially immersed in a fluid.
