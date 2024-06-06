@@ -5,6 +5,7 @@ time.initial_dt       =   -0.05        # Use this constant dt if > 0
 time.fixed_dt         =   0.01
 time.cfl              =   0.5         # CFL factor
 time.plot_interval            =  20       # Steps between plot files
+time.checkpoint_interval      =  500
 incflo.do_initial_proj = 0
 incflo.initial_iterations = 0
 incflo.sharpen_iterations = 10
@@ -37,8 +38,8 @@ incflo.physics = MultiPhase OceanWaves
 OceanWaves.label = Wave1
 OceanWaves.Wave1.type = StokesWaves
 OceanWaves.Wave1.order=5
-OceanWaves.Wave1.wave_height=0.37
-OceanWaves.Wave1.wave_period=1.533
+OceanWaves.Wave1.wave_height=0.3327      # nominal: 0.37
+OceanWaves.Wave1.wave_period=1.536       # nominal: 1.533
 OceanWaves.Wave1.water_depth=10.0
 OceanWaves.Wave1.relax_zone_gen_length=4.801496963
 OceanWaves.Wave1.numerical_beach_length=9.602993926
@@ -61,9 +62,22 @@ amr.max_level = 1
 geometry.prob_lo        =   -9.602993926  -5.25  -10.0   # Lo corner coordinates
 geometry.prob_hi        =    19.205987852  5.25   2.4007484815   # Hi corner coordinates
 geometry.is_periodic    =    0   0    0   # Periodicity x y z (0/1)
-tagging.labels = sr
-tagging.sr.type = CartBoxRefinement
-tagging.sr.static_refinement_def = static_box.refine
+
+tagging.labels = refine0
+tagging.refine0.type = GeometryRefinement
+tagging.refine0.shapes = c0 b0
+tagging.refine0.level  = 0
+
+tagging.refine0.c0.type = cylinder
+tagging.refine0.c0.start = 0.0 0.0 -2.0
+tagging.refine0.c0.end = 0.0 0.0 1.5
+tagging.refine0.c0.outer_radius = 0.5
+
+tagging.refine0.b0.type = box                 
+tagging.refine0.b0.origin = -10.0 -5.5 -0.5
+tagging.refine0.b0.xaxis = 30.0 0.0 0.0
+tagging.refine0.b0.yaxis = 0.0 11.0 0.0
+tagging.refine0.b0.zaxis = 0.0 0.0 1.0
 
 xlo.type =   "wave_generation"
 xhi.type =   "pressure_outflow"
