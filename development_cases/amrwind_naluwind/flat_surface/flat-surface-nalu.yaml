@@ -23,12 +23,12 @@ linear_solvers:
     kspace: 75
     output_level: 0
     recompute_preconditioner: yes
-    muelu_xml_file_name: ../../meshes_etc/milestone.xml
+    muelu_xml_file_name: ../../../meshes_etc/milestone.xml
 
 realms:
 
   - name: realm_1
-    mesh: ../../meshes_etc/block_med.exo
+    mesh: "generated:48x48x48|bbox:-0.25,-0.25,-0.25,0.25,0.25,0.25|sideset:xXyYzZ|show"
     use_edges: yes
     automatic_decomposition_type: rcb
     check_for_missing_bcs: yes
@@ -56,20 +56,24 @@ realms:
     initial_conditions:
 
       - user_function: ic_1
-        target_name: fluid-HEX
+        target_name: block_1
         user_function_name:
+          volume_of_fluid: sloshing_tank
+          #initial_density: water_level
           pressure: sloshing_tank
         user_function_parameters:
-          pressure: [-100, 0.0, 0.25, 0.05, 1.1875]
+          volume_of_fluid: [-0.1015625, 0.0, 0.25, 0.03]
+          #initial_density: [-0.1015625, 0.03, 1000.0, 1.0]
+          pressure: [-0.1015625, 0.0, 0.25, 0.03, 0.5]
 
       - constant: ic_1
-        target_name: fluid-HEX
+        target_name: block_1
         value:
-          volume_of_fluid: 0.0
           velocity: [0.0, 0.0, 0.0]
+          #pressure: 0.0
 
     material_properties:
-      target_name: fluid-HEX
+      target_name: block_1
       specifications:
         - name: density
           type: volume_of_fluid
@@ -82,21 +86,15 @@ realms:
 
     boundary_conditions:
 
-    - wall_boundary_condition: bc_wall
-      target_name: block
-      wall_user_data:
-        velocity: [0.0, 0.0, 0.0]
-          #turbulent_ke: 0.0
-    - overset_boundary_condition: bc_overset
-      overset_connectivity_type: tioga
-      overset_user_data:
-        tioga_options:
-          set_resolutions: no
-        mesh_group:
-          - overset_name: oset_n
-            mesh_parts: [fluid-HEX]
-            wall_parts: [block]
-            ovset_parts: [ovst_bdy]
+      - overset_boundary_condition: bc_overset
+        overset_connectivity_type: tioga
+        overset_user_data:
+          tioga_options:
+            set_resolutions: no
+          mesh_group:
+            - overset_name: oset_n
+              mesh_parts: [block_1]
+              ovset_parts: [surface_1,surface_2,surface_3,surface_4,surface_5,surface_6]
 
     solution_options:
       name: myOptions
@@ -129,11 +127,11 @@ realms:
     #  value: 0.0
     #  node_lookup_type: spatial_location
     #  location: [0.0, 0.0, 1.0]
-    #  search_target_part: [fluid-HEX]
+    #  search_target_part: [block_1]
     #  search_method: stk_kdtree
             
     output:
-      output_data_base_name: out/damBreak.e
+      output_data_base_name: out/flatSurface.e
       output_frequency: 5
       output_node_set: yes
       output_variables:
@@ -149,7 +147,7 @@ Time_Integrators:
       name: ti_1
       start_time: 0.0
       termination_time: 2.0
-      time_step: 0.001
+      time_step: 0.0005
       time_stepping_type: fixed
       time_step_count: 0
       second_order_accuracy: yes
