@@ -78,8 +78,9 @@ realms:
           secondary_value: 1.
 
         - name: viscosity
-          type: constant
-          value: 1.0e-5
+          type: volume_of_fluid
+          primary_value: 1e-2
+          secondary_value: 1e-5
 
     boundary_conditions:
 

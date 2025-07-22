@@ -12,7 +12,7 @@ io.int_outputs = iblank_cell iblank_node mask_cell mask_node
 
 incflo.diffusion_type = 0
 transport.model = TwoPhaseTransport
-transport.viscosity_fluid1=1e-5
+transport.viscosity_fluid1=1e-2
 transport.viscosity_fluid2=1e-5
 turbulence.model = Laminar
 
