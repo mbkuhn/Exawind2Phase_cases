@@ -24,6 +24,12 @@ SloshingTank.water_level = -0.0078125
 SloshingTank.initialize_pressure = true
 ICNS.source_terms = GravityForcing
 
+incflo.post_processing = fieldnorm
+fieldnorm.type = FieldNorms
+fieldnorm.output_interval = 1
+fieldnorm.use_vector_magnitude = true
+fieldnorm.norm_type = infinity
+
 Overset.verbose = 2
 Overset.disable_mphase_ops = false
 
