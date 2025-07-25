@@ -1,13 +1,13 @@
 time.stop_time               =   2     # Max (simulated) time to evolve
 time.max_step                =   -10    # Max number of time steps
 
-time.fixed_dt          =  0.0005
-time.cfl               =  0.95         # CFL factor
+time.fixed_dt        =  0.001
+time.cfl               =  1.0         # CFL factor
 time.plot_interval     =  20       # Steps between plot files
 incflo.do_initial_proj = 0
 incflo.initial_iterations = 0
 
-io.outputs = density vof velocity p gp levelset reference_pressure u_mac v_mac w_mac
+io.outputs = density vof velocity gp
 io.int_outputs = iblank_cell iblank_node mask_cell mask_node
 
 incflo.diffusion_type = 0
