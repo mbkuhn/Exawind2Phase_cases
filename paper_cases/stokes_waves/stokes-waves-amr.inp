@@ -11,15 +11,12 @@ incflo.initial_iterations = 0
 io.outputs = density vof velocity p gp reference_pressure ow_velocity ow_levelset
 io.int_outputs = iblank_cell iblank_node mask_node
 
-incflo.use_godunov = 1
-incflo.godunov_type="weno_z"
-incflo.mflux_type="minmod"
 incflo.diffusion_type = 0
 transport.model = TwoPhaseTransport
 turbulence.model = Laminar
 
-transport.viscosity_fluid1=1e-3
-transport.viscosity_fluid2=1e-5
+transport.viscosity_fluid1=0.
+transport.viscosity_fluid2=0.
 
 incflo.physics = MultiPhase OceanWaves 
 OceanWaves.label = Wave1
@@ -34,6 +31,7 @@ OceanWaves.Wave1.numerical_beach_length_factor=2.0
 OceanWaves.Wave1.zero_sea_level=0.0
 MultiPhase.density_fluid1=1000.
 MultiPhase.density_fluid2=1.
+MultiPhase.initialize_pressure=true
 ICNS.source_terms = GravityForcing
 
 ICNS.use_perturb_pressure = true
@@ -73,3 +71,23 @@ zlo.type =   "slip_wall"
 zhi.type =   "slip_wall"
 
 incflo.verbose          =   0          # incflo_level
+
+incflo.post_processing            = p_sampling l_sampling
+
+p_sampling.output_interval        = 5
+p_sampling.output_format          = native
+p_sampling.labels                 = fs_p
+p_sampling.fields                 = velocity
+p_sampling.fs_p.type              = FreeSurfaceSampler
+p_sampling.fs_p.plane_num_points  = 1 1
+p_sampling.fs_p.plane_start       = 0.0 0.0 0.0
+p_sampling.fs_p.plane_end         = 0.0 0.0 0.0
+
+l_sampling.output_interval        = 100
+l_sampling.output_format          = native
+l_sampling.labels                 = fs_l
+l_sampling.fields                 = velocity
+l_sampling.fs_l.type              = FreeSurfaceSampler
+l_sampling.fs_l.plane_num_points  = 200 1
+l_sampling.fs_l.plane_start       = -4.0 0.0 0.0
+l_sampling.fs_l.plane_end         = 4.0 0.0 0.0
