@@ -89,10 +89,6 @@ realms:
       wall_user_data:
         velocity: [0.0, 0.0, 0.0]
 
-    #- symmetry_boundary_condition: bc_wall
-    #  target_name: surface_2
-    #  symmetry_user_data:
-
     - overset_boundary_condition: bc_overset
       overset_connectivity_type: tioga
       overset_user_data:
@@ -107,7 +103,6 @@ realms:
     solution_options:
       name: myOptions
       use_balanced_buoyancy_force: no
-      #interface_width: 0.1
 
       options:
         - hybrid_factor:
