@@ -3,7 +3,7 @@ exawind:
   nalu_wind_inp:
     - stokes-waves-nalu.yaml
   amr_wind_inp: stokes-waves-amr.inp
-  max_time: 60
+  max_time: 10
   additional_picard_iterations: 2
 
   nalu_vars:
